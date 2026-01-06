@@ -1,0 +1,158 @@
+.how {
+  background: linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+  padding: 112px 0;
+}
+
+/* ===== Header ===== */
+.how-header {
+  margin-bottom: 80px;
+}
+
+.how-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7C3AED;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.how-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #020617;
+  margin-bottom: 20px;
+}
+
+.how-title span {
+  background: linear-gradient(
+    90deg,
+    #7C3AED,
+    #FACC15
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.how-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #64748B;
+}
+
+/* ===== Steps Layout ===== */
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  position: relative;
+}
+
+/* Connector */
+.how-steps::before {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 8%;
+  width: 84%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.25),
+    rgba(250, 204, 21, 0.6),
+    rgba(124, 58, 237, 0.25)
+  );
+}
+
+/* ===== Step Card ===== */
+.how-step {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 24px;
+  padding: 48px 36px;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.how-step::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.08),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.how-step:hover {
+  transform: translateY(-8px);
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 0 28px 48px rgba(2, 6, 23, 0.08);
+}
+
+.how-step:hover::after {
+  opacity: 1;
+}
+
+/* ===== Indicator ===== */
+.step-indicator {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7C3AED, #6D28D9);
+  display: grid;
+  place-items: center;
+  margin-bottom: 28px;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.35);
+}
+
+.step-indicator::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(250, 204, 21, 0.4);
+}
+
+.step-indicator span {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ===== Text ===== */
+.step-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: #020617;
+  margin-bottom: 14px;
+}
+
+.step-description {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #64748B;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .how-steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .how-steps::before {
+    display: none;
+  }
+
+  .how-header {
+    margin-bottom: 56px;
+  }
+}

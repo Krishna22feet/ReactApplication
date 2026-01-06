@@ -1,0 +1,173 @@
+.footer {
+  position: relative;
+  background: radial-gradient(
+      800px circle at top left,
+      rgba(124, 58, 237, 0.18),
+      transparent 40%
+    ),
+    #020617;
+  color: #FAFAFA;
+  padding: 112px 0 48px;
+  overflow: hidden;
+}
+
+/* ===== Links ===== */
+.footer a {
+  color: rgba(250, 250, 250, 0.75);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.footer a:hover {
+  color: #FACC15;
+  transform: translateX(4px);
+}
+
+/* ===== Layout ===== */
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.4fr 2fr;
+  gap: 80px;
+  margin-bottom: 56px;
+}
+
+/* ===== Brand ===== */
+.footer-brand .logo {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.footer-brand .logo span {
+  color: #7C3AED;
+}
+
+.footer-tagline {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(250, 250, 250, 0.75);
+  max-width: 320px;
+  margin-bottom: 32px;
+}
+
+/* ===== Newsletter ===== */
+.newsletter {
+  position: relative;
+  max-width: 340px;
+}
+
+.newsletter input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: #FAFAFA;
+  font-size: 14px;
+  outline: none;
+}
+
+.newsletter input::placeholder {
+  color: rgba(250, 250, 250, 0.4);
+}
+
+.newsletter button {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
+  padding: 0 18px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    #7C3AED,
+    #6D28D9
+  );
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter button:hover {
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35);
+}
+
+/* ===== Navigation ===== */
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer-column h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+}
+
+/* ===== Social ===== */
+.footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+  background: #7C3AED;
+  color: #FFFFFF;
+  transform: translateY(-4px);
+}
+
+/* ===== Bottom ===== */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(250, 250, 250, 0.5);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .footer-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .newsletter button {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+.footer-column a {
+  display: block;
+  margin-bottom: 12px;
+}
