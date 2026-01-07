@@ -1,14 +1,44 @@
+import { useEffect, useState } from 'react'
 import Hero from '../components/home/Hero'
 import TrustedBy from '../components/home/TrustedBy'
 import Features from '../components/home/Features'
 import HowItWorks from '../components/home/HowItWorks'
 import Testimonials from '../components/home/Testimonials'
 import FinalCTA from '../components/home/FinalCTA'
+
 const Home = () => {
+  const [hero, setHero] = useState(null)
+  const [trustedBy, setTrustedBy] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const res = await fetch(
+          'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page?populate=deep'
+          // or if you prefer explicit:
+          // 'https://.../api/home-page?populate=hero.image&populate=trustedBy.logos.image&populate=trustedBy.metrics'
+        )
+
+        const json = await res.json()
+        setHero(json.data.hero)
+        setTrustedBy(json.data.trustedBy)
+      } catch (err) {
+        console.error('Failed to load home page:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadData()
+  }, [])
+
+  if (loading) return <div>Loading…</div>
+
   return (
     <>
-      <Hero />
-      <TrustedBy />
+      <Hero hero={hero} />
+      <TrustedBy trustedBy={trustedBy} />
       <Features />
       <HowItWorks />
       <Testimonials />
