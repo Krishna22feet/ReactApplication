@@ -9,32 +9,40 @@ import FinalCTA from '../components/home/FinalCTA'
 const Home = () => {
   const [hero, setHero] = useState(null)
   const [trustedBy, setTrustedBy] = useState(null)
+  const [features, setFeatures] = useState(null)
+  const [howItWorks, setHowItWorks] = useState(null)
+  const [finalCta, setFinalCta] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-  const loadData = async () => {
-    try {
-      const res = await fetch(
-        'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page' +
-        '?populate[hero][populate]=image' +
-        '&populate[trustedBy][populate][logos][populate]=image' +
-        '&populate[trustedBy][populate]=metrics'
-      )
+    const loadData = async () => {
+      try {
+        const res = await fetch(
+          'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page' +
+            '?populate[hero][populate]=image' +
+            '&populate[trustedBy][populate][logos][populate]=image' +
+            '&populate[trustedBy][populate]=metrics' +
+            '&populate[features][populate]=items' +
+            '&populate[howitworks][populate]=steps' +
+            '&populate[finalcta][populate]=metaItems'
+        )
 
-      const json = await res.json()
+        const json = await res.json()
 
-      setHero(json.data.hero)
-      setTrustedBy(json.data.trustedBy?.[0] ?? null)
-    } catch (err) {
-      console.error('Failed to load home page:', err)
-    } finally {
-      setLoading(false)
+        setHero(json.data.hero)
+        setTrustedBy(json.data.trustedBy?.[0] ?? null)
+        setFeatures(json.data.features)
+        setHowItWorks(json.data.howitworks ?? null)
+        setFinalCta(json.data.finalcta ?? null)
+      } catch (err) {
+        console.error('Failed to load home page:', err)
+      } finally {
+        setLoading(false)
+      }
     }
-  }
 
-  loadData()
-}, [])
-
+    loadData()
+  }, [])
 
   if (loading) return <div>Loading…</div>
 
@@ -42,10 +50,10 @@ const Home = () => {
     <>
       <Hero hero={hero} />
       <TrustedBy trustedBy={trustedBy} />
-      <Features />
-      <HowItWorks />
+      <Features features={features} />
+      <HowItWorks howItWorks={howItWorks} />
       <Testimonials />
-      <FinalCTA />
+      <FinalCTA finalCta={finalCta} />
     </>
   )
 }

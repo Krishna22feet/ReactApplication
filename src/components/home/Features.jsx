@@ -1,28 +1,35 @@
 import Container from '../common/Container'
-import { features } from '../../data/homeData'
 import './features.css'
 
-const Features = () => {
+const Features = ({ features }) => {
+  if (!features) return null
+
+  const items = features.items || []
+
   return (
     <section className="features">
       <Container>
         {/* Header */}
         <header className="features-header">
-          <span className="features-eyebrow">Features</span>
+          <span className="features-eyebrow">
+            {features.eyebrow}
+          </span>
+
           <h2 className="features-title">
-            Everything you need to <span>build faster</span>
+            {features.title}{' '}
+            {features.highlight && <span>{features.highlight}</span>}
           </h2>
+
           <p className="features-subtitle">
-            A carefully crafted toolkit that helps teams ship products
-            with speed, confidence, and clarity.
+            {features.subtitle}
           </p>
         </header>
 
         {/* Creative Layout */}
         <div className="features-canvas">
-          {features.map((item, index) => (
+          {items.map((item, index) => (
             <article
-              key={index}
+              key={item.id || index}
               className={`feature-card feature-card-${index % 3}`}
             >
               <div className="feature-icon-wrapper">
@@ -32,7 +39,9 @@ const Features = () => {
               </div>
 
               <h3 className="feature-title">{item.title}</h3>
-              <p className="feature-description">{item.description}</p>
+              <p className="feature-description">
+                {item.description}
+              </p>
             </article>
           ))}
         </div>

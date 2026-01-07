@@ -2,7 +2,11 @@ import Container from '../common/Container'
 import Button from '../common/Button'
 import './finalcta.css'
 
-const FinalCTA = () => {
+const FinalCTA = ({ finalCta }) => {
+  if (!finalCta) return null
+
+  const metaItems = finalCta.metaItems || []
+
   return (
     <section className="final-cta">
       {/* Decorative Orbs */}
@@ -11,31 +15,52 @@ const FinalCTA = () => {
 
       <Container>
         <div className="cta-card">
-          <span className="cta-eyebrow">Ready to move faster?</span>
+          <span className="cta-eyebrow">
+            {finalCta.eyebrow}
+          </span>
 
           <h2>
-            Build, launch, and scale
+            {finalCta.title}
             <br />
-            <span>without limits</span>
+            {finalCta.highlight && (
+              <span>{finalCta.highlight}</span>
+            )}
           </h2>
 
-          <p>
-            Everything you need to ship production-ready software,
-            trusted by teams worldwide.
-          </p>
+          <p>{finalCta.description}</p>
 
           <div className="cta-actions">
-            <Button size="lg">Get Started Free</Button>
-            <Button variant="outline" size="lg">
-              Talk to Sales
-            </Button>
+            {finalCta.primaryCtaText && (
+              <Button
+                as="a"
+                href={finalCta.primaryCtaLink}
+                size="lg"
+              >
+                {finalCta.primaryCtaText}
+              </Button>
+            )}
+
+            {finalCta.secondaryCtaText && (
+              <Button
+                as="a"
+                href={finalCta.secondaryCtaLink}
+                variant="outline"
+                size="lg"
+              >
+                {finalCta.secondaryCtaText}
+              </Button>
+            )}
           </div>
 
-          <div className="cta-meta">
-            <span>✓ No credit card required</span>
-            <span>✓ Cancel anytime</span>
-            <span>✓ Enterprise ready</span>
-          </div>
+          {metaItems.length > 0 && (
+            <div className="cta-meta">
+              {metaItems.map((item) => (
+                <span key={item.id}>
+                  ✓ {item.text}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </Container>
     </section>
