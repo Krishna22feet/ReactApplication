@@ -12,26 +12,29 @@ const Home = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const res = await fetch(
-          'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page?populate[hero][populate]=image&populate[trustedBy][populate][logos][populate]=image&populate[trustedBy][populate]=metrics'
-          // or if you prefer explicit:
-          // 'https://.../api/home-page?populate=hero.image&populate=trustedBy.logos.image&populate=trustedBy.metrics'
-        )
+  const loadData = async () => {
+    try {
+      const res = await fetch(
+        'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page' +
+        '?populate[hero][populate]=image' +
+        '&populate[trustedBy][populate][logos][populate]=image' +
+        '&populate[trustedBy][populate]=metrics'
+      )
 
-        const json = await res.json()
-        setHero(json.data.hero)
-        setTrustedBy(json.data.trustedBy)
-      } catch (err) {
-        console.error('Failed to load home page:', err)
-      } finally {
-        setLoading(false)
-      }
+      const json = await res.json()
+
+      setHero(json.data.hero)
+      setTrustedBy(json.data.trustedBy?.[0] ?? null)
+    } catch (err) {
+      console.error('Failed to load home page:', err)
+    } finally {
+      setLoading(false)
     }
+  }
 
-    loadData()
-  }, [])
+  loadData()
+}, [])
+
 
   if (loading) return <div>Loading…</div>
 
