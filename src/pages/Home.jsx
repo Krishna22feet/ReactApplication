@@ -15,7 +15,7 @@ const Home = () => {
     const loadData = async () => {
       try {
         const res = await fetch(
-          'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page?populate=deep'
+          'https://grateful-vitality-e1cd126cc2.strapiapp.com/api/home-page?populate[hero][populate]=image&populate[trustedBy][populate][logos][populate]=image&populate[trustedBy][populate]=metrics'
           // or if you prefer explicit:
           // 'https://.../api/home-page?populate=hero.image&populate=trustedBy.logos.image&populate=trustedBy.metrics'
         )
