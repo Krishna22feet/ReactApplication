@@ -4,6 +4,7 @@ import './trustedby.css'
 const TrustedBy = ({ trustedBy }) => {
   if (!trustedBy) return null
 
+  // if trustedBy is already an object (Option A fix)
   const logos = trustedBy.logos || []
   const metrics = trustedBy.metrics || []
 
@@ -18,9 +19,10 @@ const TrustedBy = ({ trustedBy }) => {
         <div className="logo-marquee">
           <div className="logo-track">
             {[...logos, ...logos].map((logo, index) => {
+              const image = logo.image?.[0]
               const imgSrc =
-                logo.image?.formats?.small?.url ||
-                logo.image?.url
+                image?.formats?.small?.url ||
+                image?.url
 
               return (
                 <div className="logo-item" key={index}>
